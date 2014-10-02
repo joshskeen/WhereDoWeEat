@@ -1,24 +1,28 @@
 package com.joshskeen.wheredoweeat;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 
-import java.util.Arrays;
-import java.util.List;
+import com.joshskeen.wheredoweeat.service.YelpService;
+
+import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import rx.Observable;
-import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends BaseActivity {
+
+    @Inject
+    YelpService mYelpService;
 
     @InjectView(R.id.what_should_i_eat_button)
     Button mWhatShouldIEatButton;
-    private String TAG = "MainActivity";
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -30,20 +34,12 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
         ButterKnife.inject(this);
-    }
 
-    private void doStuff(String s) {
-        System.out.println("yeeahh doing stuff to " + s);
-    }
-
-    private Observable<String> getTitle(String url) {
-        return Observable.just("radddd url: " + url);
-    }
-
-    private Observable<List<String>> query(String query) {
-        return Observable.create((Subscriber<? super List<String>> subscriber) -> {
-            subscriber.onNext(Arrays.asList("foo", "bar", "qaz"));
-        });
+        mYelpService.search("pizza")
+                .flatMap(searchResponse -> Observable.from(searchResponse.mBusinesses))
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(business -> Log.d(TAG, "got business: " + business));
     }
 
 }

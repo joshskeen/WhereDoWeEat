@@ -10,4 +10,10 @@ public class Business {
     @SerializedName("name")
     public String mName;
 
+    @Override
+    public String toString() {
+        return "Business{" +
+                "mName='" + mName + '\'' +
+                '}';
+    }
 }
