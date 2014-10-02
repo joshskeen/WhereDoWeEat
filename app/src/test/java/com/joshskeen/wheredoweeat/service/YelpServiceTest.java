@@ -1,5 +1,7 @@
 package com.joshskeen.wheredoweeat.service;
 
+import com.joshskeen.wheredoweeat.service.response.SearchResponse;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,6 +19,8 @@ public class YelpServiceTest {
 
     @Test
     public void testThatYelpServieSupportsMakingSearch(){
+        SearchResponse pizza = mService.search("pizza");
+        System.out.println(pizza);
     }
 
 }

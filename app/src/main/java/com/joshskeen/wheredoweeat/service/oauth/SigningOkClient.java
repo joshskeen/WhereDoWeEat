@@ -16,8 +16,6 @@ package com.joshskeen.wheredoweeat.service.oauth;
  * limitations under the License.
  */
 
-import com.squareup.okhttp.OkHttpClient;
-
 import java.io.IOException;
 
 import oauth.signpost.exception.OAuthCommunicationException;
@@ -36,11 +34,6 @@ public class SigningOkClient extends OkClient {
     private final RetrofitHttpOAuthConsumer mOAuthConsumer;
 
     public SigningOkClient(RetrofitHttpOAuthConsumer consumer) {
-        mOAuthConsumer = consumer;
-    }
-
-    public SigningOkClient(OkHttpClient client, RetrofitHttpOAuthConsumer consumer) {
-        super(client);
         mOAuthConsumer = consumer;
     }
 

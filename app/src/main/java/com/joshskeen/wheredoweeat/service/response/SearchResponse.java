@@ -11,4 +11,11 @@ public class SearchResponse {
     @SerializedName("businesses")
     public List<Business> mBusinesses;
 
+
+    @Override
+    public String toString() {
+        return "SearchResponse{" +
+                "mBusinesses=" + mBusinesses +
+                '}';
+    }
 }
