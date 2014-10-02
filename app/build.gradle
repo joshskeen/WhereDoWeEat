@@ -1,9 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'retrolambda'
-
-
 android {
-    compileSdkVersion 20
+    compileSdkVersion 19
     buildToolsVersion "20.0.0"
 
     defaultConfig {
@@ -33,20 +31,20 @@ android {
 
     dependencies {
         compile fileTree(dir: 'libs', include: ['*.jar'])
-        compile 'oauth.signpost:oauth-signpost:1.2.1.2'
         compile 'com.jakewharton:butterknife:5.1.2'
         compile 'com.squareup.dagger:dagger:1.2.2'
+        provided 'com.squareup.dagger:dagger-compiler:1.2.2'
+        compile 'com.squareup.retrofit:retrofit:1.6.1'
+        compile 'com.squareup.okhttp:okhttp:2.0.0'
         compile 'net.orfjackal.retrolambda:retrolambda:1.6.1'
         compile 'com.netflix.rxjava:rxjava-android:0.20.4'
-        provided 'com.squareup.dagger:dagger-compiler:1.2.2'
+        compile 'oauth.signpost:signpost-core:1.2.1.2'
+        compile 'com.google.code.gson:gson:1.7.2'
+
         androidTestCompile 'org.easytesting:fest:1.0.16'
         testCompile 'junit:junit:4.10'
         testCompile 'org.robolectric:robolectric:2.3'
         testCompile 'com.squareup:fest-android:1.0.8'
     }
 
-
 }
-
-
-
