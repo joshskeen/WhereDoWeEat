@@ -36,10 +36,10 @@ public class MainActivity extends BaseActivity {
         ButterKnife.inject(this);
 
         mYelpService.search("pizza")
-                .flatMap(searchResponse -> Observable.from(searchResponse.mBusinesses))
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(business -> Log.d(TAG, "got business: " + business));
+        .subscribeOn(Schedulers.newThread())
+        .observeOn(AndroidSchedulers.mainThread())
+        .flatMap(searchResponse -> Observable.from(searchResponse.mBusinesses))
+        .subscribe(business -> Log.d(TAG, "got business: " + business));
     }
 
 }
