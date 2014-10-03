@@ -10,7 +10,7 @@ import rx.Observable;
  * Created by joshskeen on 10/2/14.
  */
 public interface YelpServiceInterface {
-    @GET("/search")
+    @GET("/performSearch")
     public Observable<SearchResponse> search(
             @Query("ll") String latAndLong,
             @Query("term") String term,
