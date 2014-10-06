@@ -2,6 +2,7 @@ package com.joshskeen.wheredoweeat;
 
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.joshskeen.wheredoweeat.service.YelpServiceManager;
 
@@ -19,15 +20,24 @@ public class MainActivity extends BaseActivity {
     @Inject
     YelpServiceManager mYelpServiceManager;
 
-    @InjectView(R.id.what_should_i_eat_button)
-    Button mWhatShouldIEatButton;
+    @InjectView(R.id.business_name)
+    TextView mBusinessName;
+
+    @InjectView(R.id.try_again_button)
+    Button mTryAgainButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
         ButterKnife.inject(this);
-        mCompositeSubscription.add(mYelpServiceManager.performSearch().subscribe());
+        loadWhereToEatRecommendation();
+        mTryAgainButton.setOnClickListener(v -> loadWhereToEatRecommendation());
+    }
+
+    private void loadWhereToEatRecommendation() {
+        mCompositeSubscription.clear();
+        mCompositeSubscription.add(mYelpServiceManager.performSearch().subscribe(business -> mBusinessName.setText(business.mName)));
     }
 
     @Override

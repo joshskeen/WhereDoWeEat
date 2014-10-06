@@ -13,11 +13,4 @@ public class Business {
     @SerializedName("rating")
     public double mRating;
 
-    @Override
-    public String toString() {
-        return "Business{" +
-                "mName='" + mName + '\'' +
-                ", mRating=" + mRating +
-                '}';
-    }
 }

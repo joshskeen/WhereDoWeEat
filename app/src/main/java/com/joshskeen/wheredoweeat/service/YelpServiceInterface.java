@@ -14,5 +14,6 @@ public interface YelpServiceInterface {
     public Observable<SearchResponse> search(
             @Query("ll") String latAndLong,
             @Query("term") String term,
+//            @Query("location") String location,
             @Query("radius_filter") Integer radiusInMeters);
 }
