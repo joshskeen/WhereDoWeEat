@@ -39,6 +39,7 @@ android {
         compile 'com.squareup.okhttp:okhttp-urlconnection:2.0.0'
         compile 'com.squareup.okhttp:okhttp:2.0.0'
         compile 'net.orfjackal.retrolambda:retrolambda:1.6.1'
+        compile 'com.crittercism:crittercism-android-agent:+'
         compile 'com.netflix.rxjava:rxjava-android:0.20.4'
         compile 'oauth.signpost:signpost-core:1.2.1.2'
         compile 'com.google.code.gson:gson:1.7.2'

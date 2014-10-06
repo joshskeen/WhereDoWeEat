@@ -3,6 +3,7 @@ package com.joshskeen.wheredoweeat;
 import android.app.Application;
 import android.content.Context;
 
+import com.crittercism.app.Crittercism;
 import com.joshskeen.wheredoweeat.inject.WhereDoWeEatApplicationModule;
 
 import dagger.ObjectGraph;
@@ -17,6 +18,7 @@ public class WhereDoWeEatApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Crittercism.initialize(getApplicationContext(), "543314db1787844812000003");
         mObjectGraph = ObjectGraph.create(new WhereDoWeEatApplicationModule(this));
     }
 

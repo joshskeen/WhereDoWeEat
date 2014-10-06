@@ -15,4 +15,5 @@ public abstract class BaseActivity extends Activity {
         super.onCreate(savedInstanceState);
         WhereDoWeEatApplication.get(this).inject(this);
     }
+
 }
