@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">WhereDoWeEat</string>
+    <string name="app_name">Where Do We Eat?</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
