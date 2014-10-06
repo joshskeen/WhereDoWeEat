@@ -11,11 +11,9 @@ import rx.subjects.BehaviorSubject;
  */
 public class LocationProvider {
 
-    BehaviorSubject<Location> mBehaviorSubject = BehaviorSubject.create();
-
+    private BehaviorSubject<Location> mBehaviorSubject = BehaviorSubject.create();
     private Context mContext;
     private Location mLocation;
-    private String TAG = getClass().getSimpleName();
 
     public LocationProvider(Context context, Location location) {
         mContext = context;
