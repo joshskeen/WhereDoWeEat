@@ -1,8 +1,8 @@
 package com.joshskeen.wheredoweeat;
 
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.joshskeen.wheredoweeat.model.LocationProvider;
 
@@ -25,7 +25,10 @@ public class HomeActivity extends BaseActivity {
         setContentView(R.layout.activity_my);
         mLocationProvider.loadLocation();
         mBehaviorSubject = mLocationProvider.getBehaviorSubject();
-        mBehaviorSubject.subscribe(location -> Log.d(TAG, "LOADED THE LOCATION!"));
+        mBehaviorSubject.subscribe(location -> {
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+        });
     }
 
     @Override

@@ -2,7 +2,6 @@ package com.joshskeen.wheredoweeat.model;
 
 import android.content.Context;
 import android.location.Location;
-import android.util.Log;
 
 import io.nlopez.smartlocation.SmartLocation;
 import rx.subjects.BehaviorSubject;
@@ -15,7 +14,7 @@ public class LocationProvider {
     BehaviorSubject<Location> mBehaviorSubject = BehaviorSubject.create();
 
     private Context mContext;
-    private Location mLocation; 
+    private Location mLocation;
     private String TAG = getClass().getSimpleName();
 
     public LocationProvider(Context context, Location location) {
@@ -24,7 +23,6 @@ public class LocationProvider {
     }
 
     public void loadLocation() {
-        Log.d(TAG, "LOAD THE LOCATION");
         if (mLocation != null) {
             mBehaviorSubject.onNext(mLocation);
             return;
@@ -41,7 +39,11 @@ public class LocationProvider {
         SmartLocation.getInstance().setOnLocationUpdatedListener((location, detectedActivity) -> {
             mLocation = location;
             SmartLocation.getInstance().stop(mContext);
-            mBehaviorSubject.onNext(mLocation);
+            mBehaviorSubject.onNext(location);
         });
+    }
+
+    public Location getLocation() {
+        return mLocation;
     }
 }

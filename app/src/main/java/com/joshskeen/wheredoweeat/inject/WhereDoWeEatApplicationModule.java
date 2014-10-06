@@ -1,8 +1,5 @@
 package com.joshskeen.wheredoweeat.inject;
 
-import android.content.Context;
-import android.location.LocationManager;
-
 import com.joshskeen.wheredoweeat.HomeActivity;
 import com.joshskeen.wheredoweeat.MainActivity;
 import com.joshskeen.wheredoweeat.WhereDoWeEatApplication;
@@ -31,14 +28,13 @@ public class WhereDoWeEatApplicationModule {
     @Provides
     @Singleton
     public YelpServiceManager provideYelpServiceManager() {
-        return new YelpServiceManager(YelpService.newInstance());
+        return new YelpServiceManager(YelpService.newInstance(), provideLocationManager());
     }
 
     @Provides
     @Singleton
     public LocationProvider provideLocationManager() {
-        LocationManager systemService = (LocationManager) mApplication.getSystemService(Context.LOCATION_SERVICE);
-        return new LocationProvider(mApplication.getApplicationContext(), systemService.getLastKnownLocation(LocationManager.GPS_PROVIDER));
+        return new LocationProvider(mApplication.getApplicationContext(), null);
     }
 
 }
