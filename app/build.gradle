@@ -43,7 +43,7 @@ android {
         compile 'oauth.signpost:signpost-core:1.2.1.2'
         compile 'com.google.code.gson:gson:1.7.2'
         compile 'io.nlopez.smartlocation:library:2.0.7'
-
+        compile 'com.squareup.picasso:picasso:2.3.4'
         androidTestCompile 'org.easytesting:fest:1.0.16'
         testCompile 'junit:junit:4.10'
         testCompile 'org.robolectric:robolectric:2.3'

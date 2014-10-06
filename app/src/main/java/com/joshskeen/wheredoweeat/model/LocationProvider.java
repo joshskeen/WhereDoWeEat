@@ -30,11 +30,11 @@ public class LocationProvider {
     }
 
     public void loadLocation() {
-//        if (mLocation != null) {
-//            geocodeLocation();
-//            mBehaviorSubject.onNext(mLocation);
-//            return;
-//        }
+        if (mLocation != null) {
+            geocodeLocation();
+            mBehaviorSubject.onNext(mLocation);
+            return;
+        }
         SmartLocation.getInstance().start(mContext);
         SmartLocation.getInstance().setOnLocationUpdatedListener((location, detectedActivity) -> {
             mLocation = location;

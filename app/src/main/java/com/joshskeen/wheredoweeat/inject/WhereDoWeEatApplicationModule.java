@@ -27,8 +27,14 @@ public class WhereDoWeEatApplicationModule {
 
     @Provides
     @Singleton
-    public YelpServiceManager provideYelpServiceManager(LocationProvider locationProvider) {
-        return new YelpServiceManager(YelpService.newInstance(), locationProvider);
+    public YelpServiceManager provideYelpServiceManager(LocationProvider locationProvider, Preference preference) {
+        return new YelpServiceManager(YelpService.newInstance(), locationProvider, preference);
+    }
+
+    @Provides
+    @Singleton
+    public Preference providerPreference() {
+        return new Preference();
     }
 
     @Provides

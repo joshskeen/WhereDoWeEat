@@ -1,0 +1,179 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="how about..."
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="5dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/business_name"
+                android:textSize="30sp"
+                android:text="loading..."
+                android:padding="5dp"
+                />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/restaurant_preview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            />
+
+    </LinearLayout>
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/map_fragment"
+              android:layout_width="match_parent"
+              android:layout_height="0dp"
+              android:layout_weight="1"
+              android:name="com.google.android.gms.maps.MapFragment"
+              tools:layout="@layout/activity_main"/>
+
+    <LinearLayout
+        android:paddingLeft="5dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="left|center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+            <TextView
+                style="@style/label"
+                android:text="Min Rating: "
+                />
+
+            <SeekBar
+                android:max="4"
+                android:id="@+id/rating_threshhold"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="left|center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+            <TextView
+                style="@style/label"
+                android:text="Max Distance:"
+                />
+            
+            <SeekBar
+                android:max="35000"
+                android:id="@+id/distance_threshhold"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="left|center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+            <TextView
+                style="@style/label"
+                android:text="Distance:"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/distance_value"
+                android:text=""
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp">
+
+                <RatingBar
+                    android:padding="0dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="-15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:max="4"
+                    android:numStars="4"
+                    android:stepSize="0.5"
+                    android:isIndicator="true"
+                    android:scaleX="0.4"
+                    android:scaleY="0.4"
+                    android:id="@+id/rating_bar"
+                    />
+
+                <TextView
+                    style="@style/label"
+                    android:text="Rating:"
+                    />
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/lets_go_button"
+                android:background="@android:color/holo_green_dark"
+                android:text="let's roll!"
+                />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/try_again_button"
+                android:background="@android:color/holo_red_dark"
+                android:text="what else ya got?"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -13,4 +13,30 @@ public class Business {
     @SerializedName("rating")
     public double mRating;
 
+    @SerializedName("distance")
+    public double mDistance;
+
+    @SerializedName("image_url")
+    public String mImageUrl;
+
+    @SerializedName("location")
+    public Location mLocation;
+
+    @SerializedName("closed")
+    public boolean mClosed;
+
+    public String approxDistanceInMiles() {
+        double miles = mDistance * 0.00062137;
+        return String.format("about %.2f miles away", miles);
+    }
+
+    @Override
+    public String toString() {
+        return "Business{" +
+                "mName='" + mName + '\'' +
+                ", mRating=" + mRating +
+                ", mLocation=" + mLocation +
+                '}';
+    }
+
 }
