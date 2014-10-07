@@ -17,7 +17,7 @@
         android:gravity="center"
         android:textSize="40dp"
         android:padding="15dp"
-        android:text="Hang on, fetching your current location."
+        android:text="@string/fetching"
         />
 
     <TextView
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="15dp"
-        android:text="Make sure to enable gps in system settings. "
+        android:text="@string/enable_gps"
         />
 
 </LinearLayout>

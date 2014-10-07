@@ -22,7 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
-                android:text="how about..."
+                android:text="@string/how_about"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:paddingTop="5dp"
@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/business_name"
                 android:textSize="30sp"
-                android:text="loading..."
+                android:text="@string/loading"
                 android:padding="5dp"
                 />
 
@@ -70,7 +70,7 @@
 
             <TextView
                 style="@style/label"
-                android:text="Min Rating: "
+                android:text="@string/min_rating"
                 />
 
             <SeekBar
@@ -108,7 +108,7 @@
 
             <TextView
                 style="@style/label"
-                android:text="Distance:"
+                android:text="@string/distance"
                 />
 
             <TextView
@@ -145,7 +145,7 @@
 
                 <TextView
                     style="@style/label"
-                    android:text="Rating:"
+                    android:text="@string/rating"
                     />
             </FrameLayout>
         </LinearLayout>
@@ -162,7 +162,7 @@
                 android:layout_weight="1"
                 android:id="@+id/lets_go_button"
                 android:background="@android:color/holo_green_dark"
-                android:text="let's roll!"
+                android:text="@string/lets_roll"
                 />
 
             <Button
@@ -171,7 +171,7 @@
                 android:layout_weight="1"
                 android:id="@+id/try_again_button"
                 android:background="@android:color/holo_red_dark"
-                android:text="what else ya got?"
+                android:text="@string/what_else"
                 />
         </LinearLayout>
     </LinearLayout>

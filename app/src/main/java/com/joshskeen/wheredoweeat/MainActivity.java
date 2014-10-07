@@ -120,14 +120,14 @@ public class MainActivity extends BaseActivity {
     }
 
     private void loadWhereToEatRecommendation() {
-        mBusinessName.setText("Loading..");
+        mBusinessName.setText(getString(R.string.loading));
         mCompositeSubscription.clear();
         Action1<Business> successAction = business -> {
             mLetsGoButton.setVisibility(View.VISIBLE);
             mLetsGoButton.setOnClickListener(v -> {
                 String startAddress = StringUtil.formatLatLng(mLocationProvider.getLocation());
                 String endAddress = StringUtil.formatLatLng(business.mLocation);
-                String mapsUri = String.format("http://maps.google.com/maps?saddr=%s&daddr=%s", startAddress, endAddress);
+                String mapsUri = String.format(getString(R.string.google_map_uri), startAddress, endAddress);
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(mapsUri));
                 startActivity(intent);
             });
@@ -144,14 +144,20 @@ public class MainActivity extends BaseActivity {
         };
 
         mCompositeSubscription.add(mYelpServiceManager.performSearch().subscribe(successAction, throwable -> {
-            mBusinessName.setText("No Results!");
+            mBusinessName.setText(getString(R.string.no_results));
             mMapFragment.getMap().clear();
             mLetsGoButton.setVisibility(View.GONE);
         }));
     }
 
     @Override
-    protected void onStop() {
+    protected void onResume() {
+        super.onResume();
+        loadWhereToEatRecommendation();
+    }
+
+    @Override
+    protected void onPause() {
         super.onStop();
         mCompositeSubscription.unsubscribe();
     }
