@@ -22,7 +22,6 @@ public class Preference {
 
     public void setRatingThreshhold(int ratingThreshhold) {
         mRatingThreshhold = ratingThreshhold + MINIMUM_RATING_THRESHHOLD;
-
     }
 
     public int getRatingThreshhold() {
