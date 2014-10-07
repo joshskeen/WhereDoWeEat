@@ -105,7 +105,6 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 mPreference.setRatingThreshhold(progress);
-
             }
 
             @Override
