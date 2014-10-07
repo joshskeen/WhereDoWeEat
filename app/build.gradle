@@ -8,8 +8,8 @@ android {
         applicationId "com.joshskeen.wheredoweeat"
         minSdkVersion 17
         targetSdkVersion 19
-        versionCode 3
-        versionName "2.1"
+        versionCode 4
+        versionName "2.2"
         buildConfigField "String", "OAUTH_CONSUMER_KEY", "\"" + GRADLE_OAUTH_CONSUMER_KEY + "\"";
         buildConfigField "String", "OAUTH_CONSUMER_SECRET", "\"" + GRADLE_OAUTH_CONSUMER_SECRET + "\"";
         buildConfigField "String", "OAUTH_TOKEN", "\"" + GRADLE_OAUTH_TOKEN + "\"";
