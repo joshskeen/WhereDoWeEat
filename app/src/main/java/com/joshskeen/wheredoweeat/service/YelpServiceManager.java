@@ -32,8 +32,6 @@ public class YelpServiceManager {
                 .observeOn(AndroidSchedulers.mainThread()) //specify on which Scheduler a Subscriber should observe the Observable
                 .flatMap(searchResponse -> Observable.from(searchResponse.mBusinesses))
                 .filter(business -> business.mLocation.mCoordinate != null)
-                .filter(business -> business.mClosed != true) //filter out businesses that are closed!
-                .filter(business -> business.mRating >= mPreference.getRatingThreshhold()) //filter out businesses with ratings below a certain value
                 .toList()
                 .map(businesses -> businesses.get(new Random().nextInt(businesses.size())));
     }

@@ -15,6 +15,8 @@ public interface YelpServiceInterface {
             @Query("ll") String latAndLong,
             @Query("term") String term,
             @Query("limit") Integer limit,
+            @Query("rating") Integer rating,
             @Query("sort") Integer sort,
+            @Query("is_closed") boolean isClosed,
             @Query("radius_filter") Integer radiusInMeters);
 }
