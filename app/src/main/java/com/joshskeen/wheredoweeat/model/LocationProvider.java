@@ -24,7 +24,6 @@ public class LocationProvider {
     public void loadLocation() {
         if (mLocation != null) {
             mBehaviorSubject.onNext(mLocation);
-            return;
         }
         SmartLocation.getInstance().start(mContext);
         SmartLocation.getInstance().setOnLocationUpdatedListener((location, detectedActivity) -> {
