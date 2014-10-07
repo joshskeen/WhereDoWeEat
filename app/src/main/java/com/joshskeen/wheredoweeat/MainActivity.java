@@ -119,8 +119,8 @@ public class MainActivity extends BaseActivity {
     }
 
     private void loadWhereToEatRecommendation() {
+        mCompositeSubscription = new CompositeSubscription();
         mBusinessName.setText(getString(R.string.loading));
-        mCompositeSubscription.clear();
         Action1<Business> successAction = business -> {
             mLetsGoButton.setVisibility(View.VISIBLE);
             mLetsGoButton.setOnClickListener(v -> {
@@ -158,6 +158,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onPause() {
         super.onStop();
+        mCompositeSubscription.clear();
         mCompositeSubscription.unsubscribe();
     }
 }
