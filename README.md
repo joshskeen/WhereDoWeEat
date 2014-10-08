@@ -7,6 +7,7 @@ Answering the question "where do we eat!" as simply as possible.
 The source is an experiment in using [rxjava](https://github.com/ReactiveX/RxJava) to interface with webservices and ui event notification. It also:
 
 * leverages [retrofit](square.github.io/retrofit/) (with a custom OAuth Consumer) to make api calls to Yelp's search interface
-* dagger dependency injection
-* [robolectric tests
-* Travis continuous integration server
+* [dagger](http://square.github.io/dagger/) dependency injection
+* [robolectric](http://robolectric.org/) tests
+* [picasso](http://square.github.io/picasso/) for image downloads
+* 
