@@ -18,6 +18,7 @@ import com.joshskeen.wheredoweeat.inject.Preference;
 import com.joshskeen.wheredoweeat.model.Business;
 import com.joshskeen.wheredoweeat.model.LocationProvider;
 import com.joshskeen.wheredoweeat.model.StringUtil;
+import com.joshskeen.wheredoweeat.service.WDWESeekBarChangeListener;
 import com.joshskeen.wheredoweeat.service.YelpServiceManager;
 import com.squareup.picasso.Picasso;
 
@@ -40,6 +41,7 @@ public class MainActivity extends BaseActivity {
     LocationProvider mLocationProvider;
 
     @Inject
+    public
     Preference mPreference;
 
     @InjectView(R.id.business_name)
@@ -84,41 +86,23 @@ public class MainActivity extends BaseActivity {
     private void setupDistanceAndRatingThreshholdSeekbars() {
         //distance
         mDistanceThreshhold.setProgress(mPreference.getDistanceThreshhold());
-        mDistanceThreshhold.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        mDistanceThreshhold.setOnSeekBarChangeListener(new WDWESeekBarChangeListener(this) {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 mPreference.setDistanceThreshhold(progress);
             }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                loadWhereToEatRecommendation();
-            }
         });
         //rating
         mRatingThreshhold.setProgress(mPreference.getRatingThreshhold());
-        mRatingThreshhold.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        mRatingThreshhold.setOnSeekBarChangeListener(new WDWESeekBarChangeListener(this) {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 mPreference.setRatingThreshhold(progress);
             }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                loadWhereToEatRecommendation();
-            }
         });
     }
 
-    private void loadWhereToEatRecommendation() {
+    public void loadWhereToEatRecommendation() {
         mCompositeSubscription = new CompositeSubscription();
         mBusinessName.setText(getString(R.string.loading));
         Action1<Business> successAction = business -> {
