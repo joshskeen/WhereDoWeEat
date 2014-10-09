@@ -1,7 +1,5 @@
 package com.joshskeen.wheredoweeat;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,7 +15,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.joshskeen.wheredoweeat.inject.Preference;
 import com.joshskeen.wheredoweeat.model.Business;
 import com.joshskeen.wheredoweeat.model.LocationProvider;
-import com.joshskeen.wheredoweeat.model.StringUtil;
 import com.joshskeen.wheredoweeat.service.WDWESeekBarChangeListener;
 import com.joshskeen.wheredoweeat.service.YelpServiceManager;
 import com.squareup.picasso.Picasso;
@@ -103,27 +100,15 @@ public class MainActivity extends BaseActivity {
     }
 
     public void loadWhereToEatRecommendation() {
-        mCompositeSubscription = new CompositeSubscription();
         mBusinessName.setText(getString(R.string.loading));
         Action1<Business> successAction = business -> {
             mLetsGoButton.setVisibility(View.VISIBLE);
-            mLetsGoButton.setOnClickListener(v -> {
-                String startAddress = StringUtil.formatLatLng(mLocationProvider.getLocation());
-                String endAddress = StringUtil.formatLatLng(business.mLocation);
-                String mapsUri = String.format(getString(R.string.google_map_uri), startAddress, endAddress);
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(mapsUri));
-                startActivity(intent);
-            });
+            mLetsGoButton.setOnClickListener(v -> startActivity(NavigationIntentBuilder.build(this, mLocationProvider, business)));
             mBusinessName.setText(business.mName);
-            LatLng position = business.mLocation.mCoordinate.toLatLng();
-            MarkerOptions markerOptions = new MarkerOptions().position(position);
             Picasso.with(MainActivity.this).load(business.mImageUrl).into(mImageView);
             mDistanceValue.setText(business.approxDistanceInMiles());
             mRatingBar.setRating((float) business.mRating);
-            markerOptions.title(business.mName);
-            mMapFragment.getMap().clear();
-            mMapFragment.getMap().addMarker(markerOptions);
-            mMapFragment.getMap().animateCamera(CameraUpdateFactory.newLatLngZoom(business.mLocation.mCoordinate.toLatLng(), 15));
+            updateMap(business);
         };
 
         mCompositeSubscription.add(mYelpServiceManager.performSearch().subscribe(successAction, throwable -> {
@@ -133,14 +118,23 @@ public class MainActivity extends BaseActivity {
         }));
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        loadWhereToEatRecommendation();
+    private void updateMap(Business business) {
+        LatLng position = business.mLocation.mCoordinate.toLatLng();
+        MarkerOptions markerOptions = new MarkerOptions().position(position);
+        markerOptions.title(business.mName);
+        mMapFragment.getMap().clear();
+        mMapFragment.getMap().addMarker(markerOptions);
+        mMapFragment.getMap().animateCamera(CameraUpdateFactory.newLatLngZoom(business.mLocation.mCoordinate.toLatLng(), 15));
     }
 
     @Override
-    protected void onPause() {
+    protected void onStart() {
+        super.onStart();
+        mCompositeSubscription = new CompositeSubscription();
+    }
+
+    @Override
+    protected void onStop() {
         super.onStop();
         mCompositeSubscription.clear();
         mCompositeSubscription.unsubscribe();
