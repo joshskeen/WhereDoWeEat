@@ -12,3 +12,6 @@ The source is an experiment in using [rxjava](https://github.com/ReactiveX/RxJav
 * [picasso](http://square.github.io/picasso/) for image downloads
 * [retrolambda](http://retrolambda.com) retrolambda for java lamda
 support on android!
+
+Also shows how to embed confidential/private data using gradle
+& settings.gradle files.
